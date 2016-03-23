@@ -1,0 +1,22 @@
+<% layout('layout') -%>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-4 col-sm-4">
+        <div class="thumbnail">
+            <img src="<%= product.image %>">
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-1">
+
+    </div>
+
+
+    <div class="col-md-4 col-sm-7">
+      <h3><%= product.name %></h3>
+      <h1><%= product.price %></h1>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<% layout('layout') -%>
+
+
+<div class="jumbotron">
+  <div class="container">
+    <h2 class="text-center"> Looking for a specific gene? </h2>
+    <p class="text-center">start typing and it will start the search on demand</p>
+    <div class= "row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="input-group col-md-10 col-md-offset-1">
+          <input type="text" id="search" class="form-control input-lg" name="search_term" placeholder="Search for genes ...">
+          <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-search"></i></button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-12">
+
+<h2 class="text-center">Registry of genes</h2>
+<table class="table blue table-striped sticky-header">
+    <thead>
+    <tr>
+        <th>Part Name</th>
+        <th>Category</th>
+        <th>Part#</th>
+    </tr>
+    <tbody>
+        <% for(var i = 0; i < products.length; i++) { %>
+        <tr>
+            <td><a href="/product/<%= products[i]._id %>"><%= products[i].name %></a></td>
+            <td><%= products[i].category.name %></td>
+            <td>Bba_K<%= products[i].price %></td>
+        </tr>
+        <% } %>
+    </tbody>
+    </thead>
+</table>
+
+</div>

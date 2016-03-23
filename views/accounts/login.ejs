@@ -1,0 +1,50 @@
+<% layout('layout') -%>
+
+
+<div class="container">
+
+    <% if (message.length > 0) { %>
+
+        <div class="alert alert-danger alert-dismissible">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times</span>
+            </button>
+
+            <%= message %>
+
+        </div>
+
+    <% } %>
+
+      <form class="form-signin" method="post">
+        <h2 class="form-signin-heading">Login</h2>
+        <div class="form-group">
+        <label class="sr-only" for="inputEmail">Email address</label>
+        <input class="form-control" id="inputEmail" autofocus="" required="" type="email" name="email" placeholder="Email address...">
+        </div>
+        <div class="form-group">
+        <label class="sr-only" for="inputPassword">Password</label>
+        <input class="form-control" id="inputPassword" required="" type="password" name="password" placeholder="Password...">
+        </div>
+         <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+
+    <form class="form-signin">
+    <p class="text-center"> OR </p>
+    <p class="text-center"> Log in with social profiles:</p>
+    <a class="btn btn-block btn-social btn-facebook" href="/auth/facebook">
+            <i class="fa fa-facebook"></i> Log in with Facebook
+    </a>
+
+        <a class="btn btn-block btn-social btn-google" href="/auth/google">
+            <i class="fa fa-google"></i> Log in with Google
+        </a>
+    </form>
+</div>

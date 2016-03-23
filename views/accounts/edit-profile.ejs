@@ -1,0 +1,51 @@
+<% layout('layout') -%>
+    
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="col-lg-1"></div>
+           
+            <img class="img-circle img-responsive img-center" src="<%= user.profile.picture %>" alt=""><br />
+            
+            <form method="post">
+                <h1>Edit Profile</h1>
+                <div class="form-group">
+                    <label="name">Name: </label>
+                    <input type="text" class="form-control" value="<%= user.profile.name %>" name="name">
+                </div>
+                <div class="form-group">
+                <label="company">Organization: </label>
+
+                <% if(user.company === "" || typeof user.company === 'undefined') { %>
+
+                    <input type="text" class="form-control" value="No organization..." name="company">
+
+                <% } else { %>
+
+                    <input type="text" class="form-control" value="<%= user.company %>" name="company">
+
+                <% } %>
+
+                </div>
+            <button class="btn btn-primary btn-block" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+<% if (message.length > 0) { %>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="alert alert-success alert-dismissible">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times</span>
+                    </button>
+
+            <%= message %>
+
+            </div>
+        </div>
+    </div>
+
+<% } %>
+

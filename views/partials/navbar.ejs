@@ -1,0 +1,100 @@
+
+<nav class="navbar navbar-inner navbar-static-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#owl-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="glyphicon glyphicon-align-justify gi-1_5x"></span>
+      </button>
+      <a class="logo" href="#">
+        <img alt="Brand" src="../fonts/logo-Owl-Color_cropped.ico" height="50" width="50">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="owl-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <form class="navbar-form navbar-left" method="post" action="/search" role="search">
+        <div class="form-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+
+      <ul class="nav navbar-nav navbar-right">
+ 
+        <% if (!user)  { %>
+                  
+            <button class="btn btn-primary dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Signup | Login
+            </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="/login">Login</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/signup">Signup</a></li>
+                </ul>
+
+        <% } else { %>
+
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-folder-open gi-1_5x"></span></a>
+                    <ul class="dropdown-menu">
+                        <% for (var i = 0; i < categories.length; i++) { %>
+                            <li><a href="/products/<%= categories[i]._id %>"><%= categories[i].name %></a></li>
+                        <% } %>
+                    </ul>
+                </li>
+
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt gi-1_5x"></span></a>
+                    <ul class="dropdown-menu">
+                        <% for (var i = 0; i < categories.length; i++) { %>
+                            <li><a href="/parts/<%= categories[i]._id %>"><%= categories[i].name %></a></li>
+                        <% } %>
+                    </ul>
+                </li>
+<!--
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th gi-1_5x" aria-hidden="true"></span></a>
+                    <ul class="dropdown-menu">
+                            <li><a href="/chart">Flow Cytometry graph</a></li>
+                            <li><a href="/stacked-bar">Stacked bar graph</a></li>
+                            <li><a href="/scatter">Scatter plot</a></li>
+                    </ul>
+                </li>
+            
+-->
+                <li><a href="#" class="popper" data-toggle="popover" data-trigger="focus" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th gi-1_5x" aria-hidden="true"></span></a>
+                    <div class="popper-content hide">
+                        <div class="container-fluid">
+                            <div><a href="/chart"><span class="glyphicon glyphicon-stats gi-2x" aria-hidden="true"></span><div>chart1</div></a></div>
+                            <div><p> </p></div>
+                            <div><a href="/stacked-bar"><span class="glyphicon glyphicon-picture gi-2x" aria-hidden="true"></span><div>chart2</div></a></div>
+                            <div><p> </p></div>
+                            <div><a href="/scatter"><span class="glyphicon glyphicon-random gi-2x" aria-hidden="true"></span><div>chart3</div></a></div>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="dropdown"><a href="#" class="dropdown-toggle nav-logo" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="img-circle img-responsive img-center" height="30"  width="30" src="<%= user.profile.picture %>" alt=""></a></li>
+                
+
+            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi, <%= user.profile.name %><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/profile">Profile</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </li>
+        <% } %>
+
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<script><% include ../../public/js/popup.js %></script>

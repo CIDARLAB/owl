@@ -1,0 +1,61 @@
+<% layout('layout') -%>
+
+
+<div class="jumbotron" id="navbar-gap">
+  <div class="container">
+    <h1 class="text-center"> Google-style search</h1>
+    <p class="text-center">start typing and it will start the search on demand</p>
+    <div class= "row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <div class="input-group">
+          <input type="text" id="search" class="form-control input-lg" name="search_term" placeholder="Search for a genetic part ...">
+          <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-search"></i></button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+
+  <div class="row", id="searchResults">
+
+    <% for (var i = 0; i < products.length; i++) { %>
+    <div class="col-xs-6 col-sm-4 col-md-3">
+      <a href="/product/<%= products[i]._id %>">
+        <div class="thumbnail">
+          <img src="<%= products[i].image %>">
+          <div class="caption">
+            <h4 class="text-center"><%= products[i].name %></h4>
+            <p><%= products[i].category.name %></h3>
+            <p>$<%= products[i].price %></p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+    
+    <div class="row">
+        <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+        <ul class="pagination text-center">
+            <li>
+            <% for(var i = 1; i <= pages; i++) { %>
+            <% if (i === 1)  {  %>
+            <li><a href="/"><%= i %></a></li>
+            <% } else { %>
+            <li><a href="/page/<%= i %>"><%= i %></a></li>
+            <% } %>
+
+            <% } %>
+            </li>
+
+        </ul>
+        </div>
+    </div>
+
+
+  </div>
+</div>

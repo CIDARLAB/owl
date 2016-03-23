@@ -1,0 +1,30 @@
+
+<% layout('layout') -%>
+
+<h1>This is an Admin page to add new Categories...</h1>
+
+<div class="container">
+
+    <% if (message.length > 0) { %>
+
+        <div class="alert alert-success alert-dismissible">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times</span>
+            </button>
+
+            <%= message %>
+
+        </div>
+
+    <% } %>
+
+      <form class="form-signin" method="post">
+        <h2 class="form-signin-heading">Add a new Category</h2>
+        <div class="form-group">
+        <label name="name">name</label>
+        <input class="form-control"" autofocus="" type="text" name="name" placeholder="new category...">
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      </form>
+</div>
