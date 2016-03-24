@@ -31,7 +31,7 @@
       stacked : true,
       horizontal : horizontal,
       barWidth : 0.6,
-      lineWidth : 1,
+      lineWidth : 0,
       shadowSize : 0,
       fillOpacity : 1
     },
