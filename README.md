@@ -19,10 +19,10 @@ In order to run Owl locally, you will need to install the following dependencies
 > After cloning Owl from the GitHub repo, you might need to reinstall the "node modules"speciied in ***package.json***:
 
 In terminal window, open the Project directory and run the following commands:
-`npm cache clean
-rm -rf node_modules
-npm install express --save
-npm install .`
+`npm cache clean`
+`rm -rf node_modules`
+`npm install express --save`
+`npm install .`
 
 ----------
 
