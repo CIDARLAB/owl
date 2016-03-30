@@ -12,7 +12,7 @@ In order to run Owl locally, you will need to install the following dependencies
 
  - **Node.js** ([link](https://nodejs.org/en/)). Specify the PATH.
 
- 
+
  - **Elasticsearch** ([link](https://www.elastic.co/downloads/elasticsearch)). Run via terminal/cmd.
 
 
@@ -28,8 +28,8 @@ In terminal window, open the Project directory and run the following commands:
 ## **RUN:** ##
 To run, open the project folder in a terminal window and type:
 
- `node server.js` 
+ `node server.js`
 or
 `nodemon server.js` , if you prefer the module "nodemon".
- 
+
 > Written with [StackEdit](https://stackedit.io/).
