@@ -70,6 +70,10 @@ body{
 /* FOOTER */
 .copyright{padding-left: 5px;}
 
+#userLogo{
+  display:inline-block;
+}
+
 /* CUSTOMIZE THE SIGN-IN
 -------------------------------------------------- */
 .form-signin {

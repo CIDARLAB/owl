@@ -83,17 +83,15 @@
                     </div>
                 </li>
 
-
-                <li class="dropdown"><a href="#" class="dropdown-toggle nav-logo" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="img-circle img-responsive img-center" height="30"  width="30" src="<%= user.profile.picture %>" alt=""></a></li>
-
-
-            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi, <%= user.profile.name %><span class="caret"></span></a>
+            <div class="btn-group navbar-btn">
+              <img class="img-circle img-responsive img-center" height="30"  width="30"  id="userLogo" src="<%= user.profile.picture %>" alt="">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi, <%= user.profile.name %><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/profile">Profile</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
-            </li>
+            </div>
         <% } %>
 
       </ul>
