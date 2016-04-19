@@ -3,6 +3,7 @@
 
 //Encapsulate all code in this immediately-invoked function expression (aka: self-evoking anonymous function).
 //Maintains scope and state for entirety of the library's execution.
+
 (function(Clotho) {
 
     var callbackHash = {}; //Callback function hash table --> Key: request id, Value: callback function
@@ -16,9 +17,9 @@
 
     socket.onopen = function() {
         console.log("websocket opened!");
-        ///Remember JS is single-threaded so the WebSocket will not reach readystate=1 until 
+        ///Remember JS is single-threaded so the WebSocket will not reach readystate=1 until
         ///the entire library finishes loading. In the off chance the user writes a script that calls
-        ///a Clotho function immediately upon completion of dependencies loading, the socket will not 
+        ///a Clotho function immediately upon completion of dependencies loading, the socket will not
         ///have had enough time to enter readystate. Handle this by storing those calls (if any are made)
         ///and executing them in this socket.onopen() method.
         for (var i=0; i < socket.messageCache.length; i++){
@@ -27,7 +28,7 @@
     };
 
     socket.onmessage = function(evt) {
-        // Parse message into JSON  
+        // Parse message into JSON
         var dataJSON = JSON.parse(evt.data);
         var channel = dataJSON.channel;
         var requestId = dataJSON.requestId;
@@ -64,10 +65,10 @@
     var lastRequestId = -1;
     function nextId(){
         lastRequestId++;
-        return lastRequestId; 
+        return lastRequestId;
     }
 
-    // Helper function: Sends message to server 
+    // Helper function: Sends message to server
     socket.emit = function(channel, data, options) {
         // Create 'deferred' object ... Q is a global variable
         var deferred = Q.defer();
@@ -77,7 +78,7 @@
         var callback = function(dataFromServer) {
             deferred.resolve(dataFromServer);
         };
-        // Hash callback function: (channel + requestID) because we need to distinguish between "say" messages and desired responses from server. 
+        // Hash callback function: (channel + requestID) because we need to distinguish between "say" messages and desired responses from server.
         callbackHash[channel + requestID] = callback;
         socket.sendwhenready(JSON.stringify(message));
         return deferred.promise;
@@ -109,7 +110,7 @@
             /** Three cases below (in order):
              *  Input param is a JSON object. Ex: Clotho.create({"name":"My New Part", "sequence":"GGGGGG"})
              *  Input param is an object containing a single JSON. Ex: Clotho.create([{"name":"My New Part", "sequence":"GGGGGG"}])
-             *  Input param is an object containing multiple JSONs. Ex: 
+             *  Input param is an object containing multiple JSONs. Ex:
              */
             if (object.length == undefined) {
                 return socket.emit("create", object, options);
@@ -147,7 +148,7 @@
             }
         },
 
-        /** 
+        /**
          * Clotho.get
          * Gets object(s) as defined by the input parameter(s).
          * @param {Object} JSON object selector(s) describing an instance(s) of Clotho schema.
@@ -189,10 +190,10 @@
         /**
          * Clotho.run
          * Executes specified function with args as its input.
-         * @param {Object} Object selector with 2 or 3 fields: 
-         *  'Object.module' {String} indicates function module to run [OPTIONAL], 
+         * @param {Object} Object selector with 2 or 3 fields:
+         *  'Object.module' {String} indicates function module to run [OPTIONAL],
          *  'Object.func' {String} indicates the function to run,
-         *  'Object.input' {Object} indicates input arguments for function. 
+         *  'Object.input' {Object} indicates input arguments for function.
          */
         run: function(object, options) {
             if (object.args == undefined)
@@ -219,12 +220,12 @@
          */
         validate: function (object, options) {
             return socket.emit("validate", object, options);
-        }, 
-	
+        },
+
 	/**
          * Clotho.createUser
          * Login to Clotho
-         * @param {Object} 
+         * @param {Object}
          */
         createUser: function(name, pass) {
             return socket.emit("createUser", {"username":name, "password":pass});
@@ -233,7 +234,7 @@
         /**
          * Clotho.login
          * Login to Clotho
-         * @param {Object} 
+         * @param {Object}
          */
         login: function(name, pass) {
             return socket.emit("login", {"username":name, "credentials":pass});
@@ -242,7 +243,7 @@
         /**
          * Clotho.logout
          * Login to Clotho
-         * @param {Object} 
+         * @param {Object}
          */
         logout: function() {
             return socket.emit("logout", "");
