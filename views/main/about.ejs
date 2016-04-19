@@ -10,6 +10,7 @@
 <button id="set" type="button" class="btn btn-success btn-lg">Set</button>
 <button id="createAll" type="button" class="btn btn-success btn-lg">Create All</button>
 <button id="queryOne" type="button" class="btn btn-success btn-lg">Query One</button>
+<button id="createUser" type="button" class="btn btn-success btn-lg">Create a user</button>
 
 <script>
     $(document).ready(function() {
@@ -42,6 +43,12 @@
             //         alert(data.sequence);
             //     }).done();
             // });
+        });
+        $("#createUser").click(function() {
+            Clotho.create({"username":"abc123", "password":"abc123"});
+            Clotho.get("username").then(function(user) {
+              alert(user.username);
+            }).done();
         });
         $("#createAll").click(function() {
             Clotho.create([{"name":"My New Part", "sequence":"GGGGGG"},{"name":"My Second Part", "sequence":"AAACCC"}]).then(function(id) {
