@@ -11,7 +11,7 @@
 <button id="createAll" type="button" class="btn btn-success btn-lg">Create All</button>
 <button id="queryOne" type="button" class="btn btn-success btn-lg">Query One</button>
 <button id="createUser" type="button" class="btn btn-success btn-lg">Create a user</button>
-
+<button id="login" type="button" class="btn btn-success btn-lg">Login</button>
 <script>
     $(document).ready(function() {
         $("#connect").click(function() {
@@ -32,12 +32,17 @@
                 alert(data.name);
             }).done();
         });
-        $("#create").click(function() {
-            obj = {"name":"My New Part", "sequence":"GGGGGG"};
-            Clotho.create(obj);
-            Clotho.get("My New Part").then(function(data) {
-                alert(data.sequence);
+        $("#login").click(function() {
+            Clotho.login("abc123", "abc123").then(function(loginResult) {
+                console.log(JSON.stringify(loginResult));
             }).done();
+        });
+        $("#create").click(function() {
+            obj = {"name":"My New Part", "sequence":"GGGGGG", "schema":"org.owl.owlsome"};
+            Clotho.create(obj).then(function(createResult){
+              console.log(JSON.stringify(createResult));
+            });
+
             // Clotho.create(obj).then(function(id) {
             //     Clotho.get(id).then(function(data) {
             //         alert(data.sequence);
@@ -45,10 +50,9 @@
             // });
         });
         $("#createUser").click(function() {
-            Clotho.create({"username":"abc123", "password":"abc123"});
-            Clotho.get("username").then(function(user) {
-              alert(user.username);
-            }).done();
+            Clotho.createUser("abc123","abc123").then(function(createUserResults){
+              console.log(JSON.stringify(createUserResults));
+            });
         });
         $("#createAll").click(function() {
             Clotho.create([{"name":"My New Part", "sequence":"GGGGGG"},{"name":"My Second Part", "sequence":"AAACCC"}]).then(function(id) {
